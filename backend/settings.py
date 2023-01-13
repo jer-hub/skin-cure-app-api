@@ -30,8 +30,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG")
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'skin-cure-api.fly.dev']
-CSRF_TRUSTED_ORIGINS = ['https://skin-cure-api.fly.dev']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -47,12 +46,14 @@ INSTALLED_APPS = [
     'core',
     'skincure',
     "guest_user",
+    "corsheaders"
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -125,6 +126,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
